@@ -8,12 +8,26 @@ void playerSwitch();
 //void boardSelection(int array[][]);
 
 
+
+class Spot {
+	bool isFull;
+	std::string nameLocation;
+	char value;
+	std::string img;
+};
+
+class Board {
+	Spot board[3][3];
+};
+
+
+
 int main() {
 
 	int r;
 	int c;
-	int array[3][3] = { 0,1,2,3,4,5,6,7,8 };
-
+	int array[3][3] = {0,1,2,3,4,5,6,7,8};
+	// bool arraySpot[9];
 	/*
    for(r = 0; r < 3 ; r++){
 	   std::cout<<std::endl;
@@ -39,6 +53,7 @@ int main() {
 	std::cout << "Choose a spot: ";
 
 	std::cin >> selection;
+	if(selection == 0)
 
 	//array[selection][] = 0;
 
@@ -60,9 +75,11 @@ void playerSwitch() {
 }
 
 
-void validateSelection() {//Check if X or O already exist in spot
-
-
+void validateSelection() {//Check if X or O already exist in spot //Remove function and add to Board Selection once complete. 
+	
+	if (isFull == true) {
+		std::cout << "\nThis spot is already filled";
+	}
 }
 
 
