@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include <string>
-
+#include <limits>;
 class Spot {
 private:
     bool isFull;
@@ -40,66 +40,86 @@ public:
             }
         }
     }
+
     void showBoard() {   //temporary. Moving this somewhere else is probably better.
         for (int r = 0; r < 3; r++) {
             std::cout << std::endl;
             for (int c = 0; c < 3; c++) {
                 std::cout << board[r][c].getQuadrant();
-                if (c < 2)std::cout << " || ";
+                if (c < 2)std::cout << "     ";
             }
-            if (r < 2) std::cout << std::endl << "============================================ ";
+            //if (r < 2) std::cout << std::endl << "============||=================||================ "; //Need to figure out how to Keep the board pinned while only changing the values.
         }
     }
+    void boardSelection();
 };
 
 void twoPlayer();
 void checkResult();
 void validateSelection();
-void playerSwitch();
+
+std::string playerSwitch();
 
 int main() {
 
     int r;
     int c;
     bool arraySpot[9];
-    std::string locations[3][3] = { "Top Left   ", "Top  Center  ","Top Right   ",
-                                  "Middle Left", "Middle Center","Middle Right",
-                                  "Bottom Left", "Bottom Center","Bottom Right" };
+    std::string locations[3][3] = { "Top Left",    "Top Center",   "Top Right",
+                                    "Middle Left", "Middle Center","Middle Right",
+                                    "Bottom Left", "Bottom Center","Bottom Right" };
 
     Board twoplayer;
-  
+
     twoplayer.addLocations(locations);
-    
     twoplayer.showBoard();
+    int count = 0;
 
+    while (count < 9) {
+        twoplayer.boardSelection();
+        twoplayer.showBoard();
 
+        count++;
+    }
 
     return 0;
 
 }
-/*void boardSelection(int array[][]) {
+void Board::boardSelection() {
 
-        int selection;
-        std::cout << "Choose a spot: ";
+    std::string selection;
+    std::cout << "\nChoose a spot: ";
+    std::getline(std::cin, selection);
 
-        std::cin >> selection;
-        if(selection == 0)
-
-        //array[selection][] = 0;
-
-}*/
+    for (int r = 0; r < 3; ++r) {
+        for (int c = 0; c < 3; ++c) {
+            if (board[r][c].getQuadrant() == selection) {
 
 
-void playerSwitch() {
-    int x;
-
-    for (x = 0; x < 9; x++) {
-        if (x % 2 == 0) {
-            std::cout << "\nPlayer X" << x;
+                board[r][c].setQuadrant(playerSwitch());
+            }
         }
-        else std::cout << "\nPlayer O" << x;
-    
     }
+    //    std::cout<<board[0][0].getQuadrant();
+    //    std::cout<<selection;
+
+}
+
+
+std::string playerSwitch() {
+    static int x;
+
+    if (x % 2 == 0) {
+        //std::cout << "\nPlayer X" << x;
+        x++;
+        return "X";
+    }
+    else {
+        //std::cout << "\nPlayer O" << x;
+        x++;
+        return "O";
+    }
+
 }
 
 
