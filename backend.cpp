@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include <string>
-#include <limits>;
+#include <limits>
 class Spot {
 private:
     bool isFull;
