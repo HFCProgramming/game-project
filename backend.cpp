@@ -52,6 +52,16 @@ public:
         }
     }
     void boardSelection();
+
+
+
+    void checkResult() {//Check if last move is a three in a row or draw.
+
+
+        //if (board[0][0].getQuadrant == 'X' && board[0][1].getQuadrant =='X' && board[0][2].getQuadrant == 'X')
+
+    }
+
 };
 
 void twoPlayer();
@@ -130,11 +140,6 @@ void validateSelection() {//Check if X or O already exist in spot //Remove funct
     }
 }
 
-
-void checkResult() {//Check if last move is a three in a row or draw.
-
-
-}
 
 void twoPlayer() {  //Store the x and o spots for each player??
 
