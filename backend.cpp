@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 #include <limits>
@@ -21,6 +20,7 @@ public:
     void setQuadrant(std::string quadrant) { this->quadrant = quadrant; }//Shorten this if possible.
     std::string getQuadrant() { return quadrant; }
     void setIsFull(bool isFull) { this->isFull = isFull; }
+    bool getIsFull(){return isFull;}
     void setXorO(char xOrO) { this->xOrO = xOrO; }
 
     Spot() {}
@@ -52,16 +52,14 @@ public:
         }
     }
     void boardSelection();
-
+    void validateSelection();
 
 
     void checkResult() {//Check if last move is a three in a row or draw.
 
-
         //if (board[0][0].getQuadrant == 'X' && board[0][1].getQuadrant =='X' && board[0][2].getQuadrant == 'X')
 
     }
-
 };
 
 void twoPlayer();
@@ -86,35 +84,48 @@ int main() {
     int count = 0;
 
     while (count < 9) {
-        twoplayer.boardSelection();
-        twoplayer.showBoard();
+		twoplayer.boardSelection();
+		twoplayer.showBoard();
 
         count++;
+        
     }
 
     return 0;
 
 }
+
+void Board::validateSelection() {//Check if X or O already exist in spot //Remove function and add to Board Selection once complete.
+    bool isFull = false; //Finish Later - Moumen
+    if (isFull == true) {
+        std::cout << "\nThis spot is already filled";
+    }
+}
+
 void Board::boardSelection() {
 
     std::string selection;
     std::cout << "\nChoose a spot: ";
     std::getline(std::cin, selection);
+    
+//    while()
 
     for (int r = 0; r < 3; ++r) {
         for (int c = 0; c < 3; ++c) {
             if (board[r][c].getQuadrant() == selection) {
+            	
+            	if(board[r][c].getIsFull()==false){ //Finish Later- Moumen
+            	board[r][c].setQuadrant(playerSwitch());
+                board[r][c].setIsFull(true);	
+				}
+               
 
-
-                board[r][c].setQuadrant(playerSwitch());
             }
         }
     }
     //    std::cout<<board[0][0].getQuadrant();
     //    std::cout<<selection;
-
 }
-
 
 std::string playerSwitch() {
     static int x;
@@ -131,15 +142,6 @@ std::string playerSwitch() {
     }
 
 }
-
-
-void validateSelection() {//Check if X or O already exist in spot //Remove function and add to Board Selection once complete.
-    bool isFull = false;
-    if (isFull == true) {
-        std::cout << "\nThis spot is already filled";
-    }
-}
-
 
 void twoPlayer() {  //Store the x and o spots for each player??
 
