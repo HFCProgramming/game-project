@@ -56,15 +56,17 @@ public:
 
 
     void checkResult() {//Check if last move is a three in a row or draw.
+        if (board[0][0].getQuadrant() == "X" && board[0][1].getQuadrant() == "X" && board[0][2].getQuadrant() == "X" || board[1][0].getQuadrant() == "X"
+            && board[1][1].getQuadrant() == "X" && board[1][2].getQuadrant() == "X" || board[2][0].getQuadrant() == "X" && board[2][1].getQuadrant() == "X"
+            && board[2][2].getQuadrant() == "X" || board[0][0].getQuadrant() == "X" && board[1][0].getQuadrant() == "X" && board[2][0].getQuadrant() == "X"
+            || board[0][1].getQuadrant() == "X" && board[1][1].getQuadrant() == "X" && board[2][1].getQuadrant() == "X")
+            std::cout << "  Great job you won the game";
 
         //if (board[0][0].getQuadrant == 'X' && board[0][1].getQuadrant =='X' && board[0][2].getQuadrant == 'X')
-
     }
 };
 
 void twoPlayer();
-void checkResult();
-void validateSelection();
 
 std::string playerSwitch();
 
